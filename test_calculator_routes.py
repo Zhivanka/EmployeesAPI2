@@ -38,12 +38,19 @@ class TestCalculatorApi(unittest.TestCase):
         self.assertEqual(result, 7)
 
     def test_multiplication(self):
-        post_data = {"num1": 10, "num2": 3}
-        response = self.app.post("/multiplication", data=json.dumps(post_data))
+        test_data = {"num1": 10, "num2": 3}
+        response = self.app.post("/multiplication", data=json.dumps(test_data))
         self.assertEqual(response.status_code, 200)
         response_data = json.loads(response.data)
         result = response_data["result"]
         self.assertEqual(result, 30)
+
+    def test_multiplication_decimal(self):
+        test_data1 = {"num1": 10, "num2": 2.5}
+        response1 = self.app.post("/multiplication", data=json.dumps(test_data1))
+        response1_data=json.loads(response1.data)
+        result1=response1_data["result"]
+        self.assertEqual(result1, 25)
 
     def test_division(self):
         post_data = {"num1": 9, "num2": 3}
