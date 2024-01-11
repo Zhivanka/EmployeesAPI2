@@ -23,6 +23,7 @@ def add_numbers():
     return {"result": first_number + second_number}
 
 
+
 @app.route("/subtract", methods=["POST"])
 def subtract_numbers():
     data = json.loads(request.data)
@@ -32,6 +33,29 @@ def subtract_numbers():
     first_number = data.get("num1")
     second_number = data.get("num2")
     return {"result": first_number - second_number}
+
+
+@app.route("/multiplication", methods=["POST"])
+def multiplication_numbers():
+    data = json.loads(request.data)
+    if "num1" not in data.keys() or "num2" not in data.keys():
+        return "Please enter 2 numbers"
+
+    first_number = data.get("num1")
+    second_number = data.get("num2")
+    return {"result": first_number * second_number}
+
+
+
+@app.route("/division", methods=["POST"])
+def division_numbers():
+    data = json.loads(request.data)
+    if "num1" not in data.keys() or "num2" not in data.keys():
+        return "Please enter 2 numbers"
+
+    first_number = data.get("num1")
+    second_number = data.get("num2")
+    return {"result": first_number / second_number}
 
 
 if __name__ == "__main__":
